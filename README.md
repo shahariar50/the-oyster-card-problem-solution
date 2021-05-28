@@ -1,10 +1,17 @@
-# Getting Started with Create React App
+# I have choosed React.js to solved this problem.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How to Start this app.
 
-## Available Scripts
+You can start this app from you local computer or you can use this link to see the output https://j0slj.csb.app/
 
-In the project directory, you can run:
+## Start apps in local pc
+
+You must have installed node and npm(Yarn for better perfomance) to install this apps.
+
+### Steps:
+
+1. run `npm i or yarn`
+   In the project directory, you can run:
 
 ### `yarn start`
 
