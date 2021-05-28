@@ -1,26 +1,23 @@
 import React from "react";
 
-const DestinationForm = () => {
+const DestinationForm = ({ stations, transportation, calculateFare }) => {
   const [errors, setErrors] = React.useState([]);
-
-  const stations = [
-    { title: "Holborn", name: "holborn", id: 1 },
-    { title: "Earl’s Court", name: "earlsCourt", id: 2 },
-    { title: "Wimbledon", name: "wimbledon", id: 3 },
-    { title: "Hammersmith", name: "hammersmith", id: 4 },
-  ];
-  const transportation = [
-    { title: "Tube", name: "tube", id: 2 },
-    { title: "Bus", name: "bus", id: 1 },
-  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors([]);
+    const obj = [];
+    setErrors(obj);
 
     if (e.target["stationFrom"].value === e.target["stationTo"].value) {
-      setErrors([...errors, "Please choose a different location."]);
+      obj.push("Please choose a different location");
+      return setErrors(obj);
     }
+
+    calculateFare(
+      Number(e.target["stationFrom"].value),
+      Number(e.target["stationTo"].value),
+      Number(e.target["transportationType"].value)
+    );
   };
 
   return (
