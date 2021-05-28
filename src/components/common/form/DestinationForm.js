@@ -87,7 +87,7 @@ const DestinationForm = ({
         type="submit"
         className={`btn ${isSwipe ? "btn-danger" : "btn-primary"}`}
       >
-        Exit the bus
+        Exit the car
       </button>
     </form>
   );

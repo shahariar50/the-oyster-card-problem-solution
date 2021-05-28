@@ -30,7 +30,7 @@ function App() {
 
     // Charge maximum fare if not swipe out before exit
     if (isSwipe) {
-      obj = { from, to, fare: 3.2 };
+      obj = { from, to, fare: 3.2, by: transportaionType };
 
       setIsSwipe(false);
       return setLogs([...logs, obj]);
@@ -40,14 +40,14 @@ function App() {
 
     // Any bus journey
     if (transportaionType === 2) {
-      obj = { from, to, fare: 1.8 };
+      obj = { from, to, fare: 1.8, by: transportaionType };
 
       return setLogs([...logs, obj]);
     }
 
     // Anywhere in Zone 1
     if (stations[from].zones.includes(1) && stations[to].zones.includes(1)) {
-      obj = { from, to, fare: 2.5 };
+      obj = { from, to, fare: 2.5, by: transportaionType };
 
       return setLogs([...logs, obj]);
     }
@@ -58,7 +58,7 @@ function App() {
 
       // Anyone zone outside zone 1
       if (maximumZoneFrom !== 1 && maximumZoneTo !== 1) {
-        obj = { from, to, fare: 2 };
+        obj = { from, to, fare: 2, by: transportaionType };
 
         return setLogs([...logs, obj]);
       }
@@ -67,20 +67,20 @@ function App() {
     if (totalPassedStation === 2) {
       // Any two zones including zone 1
       if (maximumZoneFrom === 1 || maximumZoneTo === 1) {
-        obj = { from, to, fare: 3 };
+        obj = { from, to, fare: 3, by: transportaionType };
 
         return setLogs([...logs, obj]);
       }
 
       // Any two zones excluding zone 1
       if (maximumZoneFrom !== 1 && maximumZoneTo !== 1) {
-        obj = { from, to, fare: 2.25 };
+        obj = { from, to, fare: 2.25, by: transportaionType };
 
         return setLogs([...logs, obj]);
       }
     }
 
-    obj = { from, to, fare: 3.2 };
+    obj = { from, to, fare: 3.2, by: transportaionType };
 
     setLogs([...logs, obj]);
   };
@@ -146,6 +146,7 @@ function App() {
                   <th scope="col">#</th>
                   <th scope="col">From</th>
                   <th scope="col">To</th>
+                  <th scope="col">By</th>
                   <th scope="col">Fare</th>
                 </tr>
               </thead>
