@@ -29,6 +29,17 @@ function App() {
       return console.log(2.5);
     }
 
+    // Anyone Zone
+    if (totalPassesStation === 1) {
+      // console.log("renderd");
+      if (
+        !stations[from - 1].zones.includes(1) &&
+        !stations[to - 1].zones.includes(1)
+      ) {
+        return console.log(2);
+      }
+    }
+
     console.log(from, to, transportaionType, totalPassesStation, totalZones);
   };
 
