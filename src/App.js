@@ -5,7 +5,7 @@ function App() {
     { title: "Holborn", name: "holborn", id: 1, zones: [1] },
     { title: "Earl’s Court", name: "earlsCourt", id: 2, zones: [1, 2] },
     { title: "Wimbledon", name: "wimbledon", id: 3, zones: [3] },
-    { title: "Hammersmith", name: "hammersmith", id: 4, zones: [4] },
+    { title: "Hammersmith", name: "hammersmith", id: 4, zones: [2] },
   ];
   const transportation = [
     { title: "Tube", name: "tube", id: 1 },
@@ -13,8 +13,11 @@ function App() {
   ];
 
   const calculateFare = (from, to, transportaionType) => {
-    const totalPassesStation = Math.abs(from - to);
-    const totalZones = [...stations[from - 1].zones, ...stations[to - 1].zones];
+    const maximumZoneFrom = Math.max(...stations[from].zones);
+    const maximumZoneTo = Math.max(...stations[to].zones);
+    const totalPassesStation = Math.abs(maximumZoneFrom - maximumZoneTo) + 1;
+
+    console.log(totalPassesStation);
 
     // Any bus journey
     if (transportaionType === 2) {
@@ -22,25 +25,33 @@ function App() {
     }
 
     // Anywhere in Zone 1
-    if (
-      stations[from - 1].zones.includes(1) &&
-      stations[to - 1].zones.includes(1)
-    ) {
+    if (stations[from].zones.includes(1) && stations[to].zones.includes(1)) {
       return console.log(2.5);
     }
 
     // Anyone Zone
     if (totalPassesStation === 1) {
       // console.log("renderd");
-      if (
-        !stations[from - 1].zones.includes(1) &&
-        !stations[to - 1].zones.includes(1)
-      ) {
+
+      // Anyone zone outside zone 1
+      if (maximumZoneFrom !== 1 && maximumZoneTo !== 1) {
         return console.log(2);
       }
     }
+    // Any Two Zone
+    if (totalPassesStation === 2) {
+      // Any two zones including zone 1
+      if (maximumZoneFrom === 1 || maximumZoneTo === 1) {
+        return console.log(3);
+      }
 
-    console.log(from, to, transportaionType, totalPassesStation, totalZones);
+      // Any two zones excluding zone 1
+      if (maximumZoneFrom !== 1 && maximumZoneTo !== 1) {
+        return console.log(2.25);
+      }
+    }
+
+    console.log(3.2);
   };
 
   return (
