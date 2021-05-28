@@ -35,8 +35,8 @@ const DestinationForm = ({ stations, transportation, calculateFare }) => {
       <div className="form-group">
         <label htmlFor="stationFrom">From</label>
         <select name="stationFrom" className="form-control" id="stationFrom">
-          {stations.map((station) => (
-            <option key={station.id} value={station.id}>
+          {stations.map((station, index) => (
+            <option key={station.id} value={index}>
               {station.title}
             </option>
           ))}
@@ -45,8 +45,8 @@ const DestinationForm = ({ stations, transportation, calculateFare }) => {
       <div className="form-group">
         <label htmlFor="stationTo">To</label>
         <select name="stationTo" className="form-control" id="stationTo">
-          {stations.map((station) => (
-            <option key={station.id} value={station.id}>
+          {stations.map((station, index) => (
+            <option key={station.id} value={index}>
               {station.title}
             </option>
           ))}
