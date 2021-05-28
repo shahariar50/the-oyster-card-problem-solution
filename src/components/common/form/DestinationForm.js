@@ -7,10 +7,14 @@ const DestinationForm = ({
   isSwipe,
   setIsSwipe,
 }) => {
+  // Loging ther forms errors here.
   const [errors, setErrors] = React.useState([]);
 
   const handleSubmit = (e) => {
+    // Set preventDefault so the submit button will not submit the form
     e.preventDefault();
+
+    // Seting empty object and errors
     const obj = [];
     setErrors(obj);
 
@@ -19,6 +23,7 @@ const DestinationForm = ({
       return setErrors(obj);
     }
 
+    // Successfully submitting the form by calling calculateFare function
     calculateFare(
       Number(e.target["stationFrom"].value),
       Number(e.target["stationTo"].value),

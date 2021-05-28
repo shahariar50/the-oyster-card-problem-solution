@@ -3,29 +3,45 @@ import DestinationForm from "./components/common/form/DestinationForm";
 import Log from "./components/common/Log";
 
 function App() {
+  // Value of if the card swiped
   const [isSwipe, setIsSwipe] = React.useState(false);
+
+  // Value of if in the bus
   const [isInTheBus, setIsInTheBus] = React.useState(false);
+
+  // All logs data stores here
   const [logs, setLogs] = React.useState([]);
+
+  // Balance of the card
   const [balance, setBalance] = React.useState(0);
 
+  // Stations list
   const stations = [
     { title: "Holborn", name: "holborn", id: 1, zones: [1] },
     { title: "Earl’s Court", name: "earlsCourt", id: 2, zones: [1, 2] },
     { title: "Wimbledon", name: "wimbledon", id: 3, zones: [3] },
     { title: "Hammersmith", name: "hammersmith", id: 4, zones: [2] },
   ];
+
+  // List of transportation
   const transportation = [
     { title: "Tube", name: "tube", id: 1 },
     { title: "Bus", name: "bus", id: 2 },
   ];
 
+  // Function to calculateFare
   const calculateFare = (from, to, transportaionType) => {
+    // Store the maximum zone from the array
     const maximumZoneFrom = Math.max(...stations[from].zones);
     const maximumZoneTo = Math.max(...stations[to].zones);
+
+    // Calculate how many zone passed
     const totalPassedStation = Math.abs(maximumZoneFrom - maximumZoneTo) + 1;
 
+    // Setting false of isInTheBus state.
     setIsInTheBus(false);
 
+    // This object will contain log's data
     let obj = {};
 
     // Charge maximum fare if not swipe out before exit
