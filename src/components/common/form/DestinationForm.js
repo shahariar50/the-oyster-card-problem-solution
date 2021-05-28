@@ -1,6 +1,12 @@
 import React from "react";
 
-const DestinationForm = ({ stations, transportation, calculateFare }) => {
+const DestinationForm = ({
+  stations,
+  transportation,
+  calculateFare,
+  isSwipe,
+  setIsSwipe,
+}) => {
   const [errors, setErrors] = React.useState([]);
 
   const handleSubmit = (e) => {
@@ -66,8 +72,22 @@ const DestinationForm = ({ stations, transportation, calculateFare }) => {
           ))}
         </select>
       </div>
-      <button type="submit" className="btn btn-primary">
-        Submit
+      {isSwipe && (
+        <button
+          className="btn btn-primary mr-3"
+          onClick={(e) => {
+            e.preventDefault();
+            setIsSwipe(false);
+          }}
+        >
+          Swipe Out
+        </button>
+      )}
+      <button
+        type="submit"
+        className={`btn ${isSwipe ? "btn-danger" : "btn-primary"}`}
+      >
+        Exit the bus
       </button>
     </form>
   );
